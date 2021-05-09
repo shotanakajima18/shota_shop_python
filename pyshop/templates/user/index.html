@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="container">
+        {% if users %}
+        <h2 class="text-center mt-5">Other Users</h2>
+
+            <div class="row mt-5">
+                {% for user in users %}
+                    {% if user == current_user %}
+
+                    {% else %}
+                        <div class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <dl>
+                                        <dt>User:</dt>
+                                        <dd>
+                                            <a href="/user/history/{{user.id}}">
+                                            {{user.screen_name}}
+                                        </a>
+                                        </dd>
+                                        <dt>Status:</dt>
+                                        <dd>{{ 'Admin' if user.is_admin else 'Customer' }}</dd>
+                                        <dt>Email:</dt>
+                                        <dd>{{ user.email if user }}</dd>
+                                        <dt>Address:</dt>
+                                        <dd>{{ user.address if user }}</dd>
+                                        <dt>Bio:</dt>
+                                        <dd>{{ user.bio if user }}</dd>
+                                        <dd>{{ 'Active' if user.is_active else 'Not active' }}</dd>
+                                        {% if user.is_admin %}
+
+                                        {% else %}
+                                            {% if user.is_active %}
+                                                <form action="/admin/{{user.id}}/deactivate" method="post">
+                                                    <button class="btn btn-danger" attr-user-id="{{user.id}}">Deactivate</button>
+                                                </form>
+                                            {% else %}
+                                                <form action="/admin/{{user.id}}/activate" method="post">
+                                                    <button class="btn btn-success" attr-user-id="{{user.id}}">Activate</button>
+                                                </form>
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+    </div>
+{% endblock %}

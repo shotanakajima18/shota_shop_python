@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5">
+            {{user.screen_name}}'s order history!
+        </h2>
+        {% if orders %}
+            <div class="row mt-5">
+                {% for order in orders %}
+                    <div class="col-sm-4">
+                        <div class="card my-3">
+                            <div class="card-body">
+                                <h2>
+                                    <a href="/item/show/{{order.items.id}}">
+                                        {{order.items.name}}
+                                    </a>
+                                </h2>
+                                <p>Size:{{order.items.size}}</p>
+                                <p>${{order.price}}</p>
+                                <p>Quantity:{{order.quantity}}</p>
+                                <p>Date:{{order.updated_at}}</p>
+                                <hr>
+                                <h3>Total:${{order.price*order.quantity}}</h3>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h2 class="text-center mt-5">No orders.</h2>
+        {% endif %}
+        
+    </div>
+{% endblock %}

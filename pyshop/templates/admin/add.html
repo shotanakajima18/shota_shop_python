@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+  <form class="form-auth w-50 mx-auto mt-5" method="POST" action="/admin_add" enctype="multipart/form-data">
+    <h2 class="form-auth-heading">Item</h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.name) }}
+    {{ wtf.form_field(form.size) }}
+    {{ wtf.form_field(form.price)}}
+    {{ wtf.form_field(form.quantity) }}
+    {{ wtf.form_field(form.description) }}
+    {{ wtf.form_field(form.image) }}
+
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
+  </form>
+{% endblock %}

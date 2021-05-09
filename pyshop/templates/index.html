@@ -1,0 +1,38 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='stylesheet/auth.css')}}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel=stylesheet  href="{{ url_for('static', filename='new.css') }}">
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <ul class="navbar-nav ml-3">
+        <li class="nav-item">
+            <a  class="nav-link" href="/register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a  class="nav-link" href="/login">Login</a>
+        </li>
+    </ul>
+</nav>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-8">
+            <img src="/static/images/clothes.jpg" alt="" class="w-75">
+        </div>
+        <div class="col-sm-4">
+            <h1 class="text-center display-1">Welcome to my Pyshop!</h1>
+            <p class="mt-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error ratione alias dolores similique rem harum nisi minus porro atque itaque autem nesciunt, modi tempore! Hic, excepturi ipsam? Saepe alias eum, similique sunt voluptate corrupti facilis deleniti. Dolores, incidunt quisquam accusantium deleniti magnam ad cum dolorum repellendus excepturi aliquid laudantium odio quasi voluptates ea? Soluta sed beatae accusamus nobis delectus non voluptate temporibus laudantium molestias voluptates, ab sequi dolorem neque totam provident, enim quia mollitia necessitatibus natus est possimus veritatis culpa. Dolorem, nemo, expedita exercitationem ducimus molestias excepturi, quam adipisci officia voluptates deserunt impedit dolore dicta sint quasi ea corrupti possimus natus minus necessitatibus temporibus. Amet, quae corrupti debitis nisi numquam adipisci placeat consequuntur neque nobis vel delectus, vitae deserunt reiciendis laboriosam eaque voluptatum error, cum magnam. Nesciunt nobis commodi culpa maxime aperiam voluptas dolorem, quasi soluta consequuntur doloribus esse sit. Praesentium necessitatibus unde eos dolorem, odio nam tenetur animi est.</p>
+        </div>
+    </div>
+    
+</div> <!-- /container -->
+{% endblock %}

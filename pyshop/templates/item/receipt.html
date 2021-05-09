@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+    <div class="container">
+        <div class="card w-25 mt-5 mx-auto">
+            <div class="card-body">
+                <h2>
+                    {{item.name}}
+                </h2>
+                
+                <p>Size:{{item.size}}</p>
+                <p>${{item.price}}</p>
+                <p>Quantity:{{quantity}}</p>
+                <hr>
+                <h3>Total:${{item.price*quantity}}</h3>
+                <form action="/item/receipt/{{item.id}}/{{quantity}}" method="post">
+                    <button type="submit" class="btn btn-primary w-100">Buy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

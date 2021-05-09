@@ -1,0 +1,54 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "layout.html" %}
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-5">Search Item</h3>
+        <form action="/item/search" method="post" class="w-50 mx-auto">
+            {{ form.hidden_tag( )}}
+            {{ wtf.form_field(form.keyword) }}
+            <button class="btn btn-primary btn-block" type="submit">Search</button>
+        </form>
+        {% if results %}
+            <div class="row mt-5">
+                {% for item in results %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-img-top">
+                                <img src="/static/images/{{item.image}}" class="w-100">
+                            </div>
+                            <div class="card-body">
+                                <h3>
+                                    <a href="/item/show/{{item.id}}">
+                                        Name:{{item.name}}
+                                    </a>
+                                </h3>
+                                <p>${{item.price}}</p>
+                                {% if item.quantity==0 %}
+                                    <p>
+                                        <strong class="text-danger">SOLD OUT!</strong>
+                                    </p>
+                                {% else %}
+
+                                    <p>Quantity:{{item.quantity}}</p>
+                                {% endif %}
+                                <p>Size:{{item.size}}</p>
+                                {% if current_user.is_admin == True %}
+                                    <a href="/admin/edit/{{item.id}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="/admin/delete/{{item.id}}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h3 class="text-center mt-5">No record.</h3>
+        {% endif %}
+    </div>
+    
+{% endblock %}

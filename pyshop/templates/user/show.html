@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="card w-50 mx-auto mt-5">
+    <div class="card-body">
+        <h2>Your Profile</h2>
+        <dl>
+            <dt>Username:</dt>
+            <dd>{{ user.screen_name if user }}</dd>
+            <dt>Status:</dt>
+            <dd>{{ 'Admin' if user.is_admin else 'Customer' }}</dd>
+            <dt>Email:</dt>
+            <dd>{{ user.email if user }}</dd>
+            <dt>Address:</dt>
+            <dd>{{ user.address if user }}</dd>
+            <dt>Bio:</dt>
+            <dd>{{ user.bio if user }}</dd>
+        </dl>
+        <a href="/users/me/edit">
+            <button class="btn btn-lg btn-primary btn-block">Edit</button>
+        </a>
+        <form action="{{ url_for('delete_me') }}" method=post>
+            <input type=submit value=Delete class = "btn btn-danger mt-3">
+        </form>
+    </div>
+</div>
+{% endblock %}

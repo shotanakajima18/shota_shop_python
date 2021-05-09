@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+  <form class="form-auth w-50 mx-auto mt-5" method="POST" action="/admin/edit/{{item.id}}">
+    <h2 class="form-auth-heading">Item</h2>
+    <dl>
+        <dt>Name:</dt>
+        <dd><input class = "form-control" type=text size=20 name=name value="{{ item.name if item }}"></dd>
+        <dt>Price:</dt>
+        <dd>
+            <input class = "form-control" type=number size=40 name=price value="{{ item.price if item }}">
+        </dd>
+        <dt>Quantity:</dt>
+        <dd>
+            <input class = "form-control" type=number size=40 name=quantity value="{{ item.quantity if item }}">
+        </dd>
+        <dt>Description:</dt>
+        <dd><textarea class = "form-control" name=description cols="30" rows="5">{{ item.description if item }}</textarea></dd>
+
+        <dd><input class = "btn btn-primary" type=submit value='Update'>
+    </dl>
+  </form>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!doctype html>
+<title>Pyshop Lite</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheet/index.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheet/new.css') }}">
+<script
+  src="http://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="{{url_for('static',filename='js/custom.js')}}"> 
+</script>
+<script src="https://kit.fontawesome.com/c3f601c2c7.js" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <ul class="navbar-nav ml-3">
+        <li class="nav-item">
+            <a class="nav-link"  href="/home" >Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  href="/item/search" >Search</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/users/me">Your Account</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/user/history/{{current_user.id}}">Order History</a>
+        </li>
+        {% if current_user.is_admin == True %}
+            <li class="nav-item">
+                <a class="nav-link" href="/admin_add">Add Item</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/index">Users</a>
+            </li>  
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="/login">Logout</a>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid">
+
+    
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+    {% endfor %}
+<div class="row">
+    <div class="col-12">
+        {% block body %}
+        {% endblock %}
+    </div>
+ 
+</div>
+ 
+</div>

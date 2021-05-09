@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card w-75 mt-5 mx-auto">
+                    <div class="card-img_top">
+                        <img src="/static/images/{{item.image}}" class="w-100">
+                    </div>
+                    <div class="card-body">
+                        <h2>
+                            {{item.name}}
+                        </h2>
+                        <p>${{item.price}}</p>
+                        {% if item.quantity==0 %}
+                            <p>
+                                <strong class="text-danger">SOLD OUT!</strong>
+                            </p>
+                        {% else %}
+                        
+                            <p>Quantity:{{item.quantity}}</p>
+                        {% endif %}
+                        <p>Size:{{item.size}}</p>
+
+                        <p>Description:{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <form class="w-75 mx-auto mt-5" method="POST" action="/item/show/{{item.id}}">
+                    <h2 class="">Order</h2>
+                    <input type="number" name="quantity" class="form-control my-3" min="1">
+                    
+                    <button class="btn btn-primary btn-block" type="submit">Buy</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

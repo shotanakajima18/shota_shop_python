@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h2 class="text-center mt-5">Home</h2>
+    <div class="container">
+        {% if items %}
+            <div class="row">
+                {% for item in items %}
+                    <div class="col-md-4">
+                        <div class="card my-3">
+                            <div class="card-img-top">
+                                <img src="/static/images/{{item.image}}" class="w-100">
+                            </div>
+                            <div class="card-body">
+                                <h3>
+                                    <a href="/item/show/{{item.id}}">
+                                        Name:{{item.name}}
+                                    </a>
+                                </h3>
+                                <p>${{item.price}}</p>
+                                {% if item.quantity==0 %}
+                                    <p>
+                                        <strong class="text-danger">SOLD OUT!</strong>
+                                    </p>
+                                {% else %}
+
+                                    <p>Quantity:{{item.quantity}}</p>
+                                {% endif %}
+                                <p>Size:{{item.size}}</p>
+                                {% if current_user.is_admin == True %}
+                                    <a href="/admin/edit/{{item.id}}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="/admin/delete/{{item.id}}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h2 class="text-center mt-5">No items.</h2>
+        {% endif %}
+        
+    </div>
+{% endblock %}
